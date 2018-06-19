@@ -174,6 +174,7 @@ class TestAttach < Test::Unit::TestCase
 
   # This test shows that watch_only? is false for EM.attach
   def test_attach_data
+    pend('FIXME: Windows as of 2018-05-26') if windows?
     r, w = IO.pipe
     $watch_only = nil
     $read = []
