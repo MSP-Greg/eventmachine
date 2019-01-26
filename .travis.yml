@@ -32,17 +32,18 @@ rvm:
 #  - rbx
 #  - rbx-2
 #  - rbx-3
-#  - jruby-1.7
-#  - jruby-9
+
 matrix:
   fast_finish: true
   allow_failures:
     - rvm: ruby-head
+    - rvm: jruby-head
+      dist: trusty
+      sudo: false
 #    - rvm: rbx
 #    - rvm: rbx-2
 #    - rvm: rbx-3
-#    - rvm: jruby-1.7
-#    - rvm: jruby-9
+
   include:
     - rvm: 2.6
       os: osx
@@ -51,3 +52,9 @@ matrix:
     - rvm: 2.6
       env:
         - RUBYOPT=--jit
+    - rvm: jruby-9.2.5.0
+      dist: trusty
+      sudo: false
+    - rvm: jruby-head
+      dist: trusty
+      sudo: false
