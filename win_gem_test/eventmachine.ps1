@@ -1,4 +1,4 @@
-# PowerShell script for building & testing SQLite3-Ruby fat binary gem
+# PowerShell script for building & testing EventMachine mingw pre-compiled gem
 # Code by MSP-Greg, see https://github.com/MSP-Greg/av-gem-build-test
 
 # load utility functions, pass 64 or 32
@@ -13,7 +13,7 @@ Make-Const repo_name 'eventmachine'
 Make-Const url_repo  'https://github.com/eventmachine/eventmachine.git'
 
 #———————————————————————————————————————————————————————————————— lowest ruby version
-Make-Const ruby_vers_low 20
+Make-Const ruby_vers_low 22
 # null = don't compile; false = compile, ignore test (allow failure);
 # true = compile & test
 Make-Const trunk     $false ; Make-Const trunk_x64     $false
