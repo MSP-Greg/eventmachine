@@ -1,4 +1,7 @@
 ---
+image:
+  - Visual Studio 2019
+
 install:
   # download shared script files
   - ps: >-
