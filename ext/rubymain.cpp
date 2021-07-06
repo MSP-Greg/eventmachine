@@ -87,7 +87,7 @@ static VALUE Intern_connection_completed;
 
 static VALUE rb_cProcessStatus;
 
-#ifdef IS_RUBY_3_OR_LATER
+#ifdef HAVE_RB_PROCESS_STATUS_NEW
 /* Structure definition from MRI Ruby 3.0 process.c */
 struct rb_process_status {
     rb_pid_t pid;
@@ -563,7 +563,7 @@ static VALUE t_get_subprocess_status (VALUE self UNUSED, VALUE signature)
 	if (evma_get_subprocess_status (NUM2BSIG (signature), &status)) {
 		if (evma_get_subprocess_pid (NUM2BSIG (signature), &pid)) {
 
-#ifdef IS_RUBY_3_OR_LATER
+#ifdef HAVE_RB_PROCESS_STATUS_NEW
 			struct rb_process_status *data = NULL;
 
 			/* Defined to match static definition from MRI Ruby 3.0 process.c
