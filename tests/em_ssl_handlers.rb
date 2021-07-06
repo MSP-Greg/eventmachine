@@ -7,7 +7,7 @@
 #    EM.run do
 #      EM.start_server IP, PORT, s_hndlr, server
 #      EM.connect IP, PORT, c_hndlr, client
-#    end  
+#    end
 #
 # It also passes parameters to the `start_tls` call within the `post_init`
 # callbacks of Client and Server.
@@ -17,13 +17,13 @@
 #
 # `Client` has a `:client_unbind` parameter, which when set to true, calls
 # `EM.stop_event_loop` in the `unbind` callback.
-# 
+#
 # `Server` has two additional parameters.
 #
 # `:ssl_verify_result`, which is normally set to true/false for the
 # `ssl_verify_peer` return value.  If it is set to a String starting with "|RAISE|",
 # the remaing string will be raised.
-# 
+#
 # `:stop_after_handshake`, when set to true, will close the connection and then
 # call `EM.stop_event_loop`.
 #
@@ -133,7 +133,7 @@ module EMSSLHandlers
         @@ssl_verify_result
       end
     end
-    
+
     def ssl_handshake_completed
       @@handshake_completed = true
       @@cert_value      = get_peer_cert

@@ -10,17 +10,17 @@ class TestSSLInlineCert < Test::Unit::TestCase
   CERT_FILE="#{__dir__}/client.crt"
   PRIVATE_KEY_FILE="#{__dir__}/client.key"
   ENCODED_KEY_FILE="#{__dir__}/encoded_client.key"
-  
+
   CERT = File.read CERT_FILE
   PRIVATE_KEY = File.read PRIVATE_KEY_FILE
   ENCODED_KEY = File.read ENCODED_KEY_FILE
 
   ENCODED_KEY_PASS = 'nicercat'
-  
+
   def test_proper_key_required_for_client
     # an assert in ssl.ccp code make this fail
     # with no way of catching the error
-    omit_if(rbx?)
+    omit_if(rbx? || RUBY_PLATFORM == 'i386-mingw32')
 
     bad_key=PRIVATE_KEY.dup
     assert(bad_key[100]!=4)
@@ -40,7 +40,7 @@ class TestSSLInlineCert < Test::Unit::TestCase
   def test_proper_key_required_for_server
     # an assert in ssl.ccp code make this fail
     # with no way of catching the error
-    omit_if(rbx?)
+    omit_if(rbx? || RUBY_PLATFORM == 'i386-mingw32')
 
     bad_key=PRIVATE_KEY.dup
     assert(bad_key[100]!=4)
