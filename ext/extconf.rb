@@ -139,7 +139,7 @@ else
 end
 
 # Add for changes to Process::Status in Ruby 3
-have_func('rb_process_status_new')
+have_func('&rb_process_status_new')
 
 # Adjust number of file descriptors (FD) on Windows
 
