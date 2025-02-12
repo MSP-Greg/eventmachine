@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# WIth GitHub Actions, OS's `/tmp` folder may be on a HDD, while
+# ENV['RUNNER_TEMP'] is an SSD.  Faster.
+if ENV['GITHUB_ACTIONS'] == 'true'
+  ENV['TMPDIR'] = ENV['RUNNER_TEMP']
+end
+
 require 'em/pure_ruby' if ENV['EM_PURE_RUBY']
 require 'eventmachine'
 require 'rbconfig'
