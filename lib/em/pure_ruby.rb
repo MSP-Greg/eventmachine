@@ -35,6 +35,11 @@ require 'fcntl'
 require 'set'
 require 'openssl'
 
+if RUBY_VERSION >= '3.5'
+  require 'sorted_set'
+end
+
+
 module EventMachine
   # @private
   class Error < Exception; end
