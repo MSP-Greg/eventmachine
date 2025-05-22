@@ -14,6 +14,7 @@ if RUBY_VERSION >= '3.5'
   gem 'set'
 end
 
+# only needed for lib/em/pure_ruby.rb
 # switch to install_if when ruby 2.2 support is dropped
 if RUBY_VERSION >= '3.0'
   gem 'sorted_set'
