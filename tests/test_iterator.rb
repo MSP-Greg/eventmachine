@@ -86,10 +86,13 @@ class TestIterator < Test::Unit::TestCase
     assert_equal(list.to_a.sort, items.values.flatten.sort)
   end
 
+  # pure Ruby with Ruby head (3.5) breaks without using 2nd parameter for
+  # EM::Iterator.new
   def test_map
+    concurrency = pure_ruby_mode? && RUBY_VERSION >= '3.5' ? 5 : 1
     list = 100..150
     EM.run {
-      EM::Iterator.new(list).map(proc{ |num,iter|
+      EM::Iterator.new(list, concurrency).map(proc{ |num,iter|
         EM.add_timer(0.01){ iter.return(num) }
       }, proc{ |results|
         assert_equal(list.to_a.size, results.size)

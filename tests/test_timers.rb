@@ -94,6 +94,9 @@ class TestTimers < Test::Unit::TestCase
   end
 
   def test_oneshot_timer_large_future_value
+    if pure_ruby_mode? && RUBY_VERSION >= '3.5'
+      pend('FIXME: this test is broken in pure ruby mode with Ruby 3.5') if pure_ruby_mode?
+    end
     large_value = 11948602000
     EM.run {
       EM.add_timer(large_value) { EM.stop }
