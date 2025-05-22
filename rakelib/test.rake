@@ -72,7 +72,10 @@ namespace "test" do
       csr.subject = x509_subject(cfg)
       vers = cfg.fetch "version", 2
       STDOUT.syswrite "\n---- version #{vers}  #{vers.class}\n"
-      csr.version = vers # 2 == v3
+      # OpenSSL 3.2 and later default to v3
+      if OpenSSL::OPENSSL_VERSION_NUMBER.to_s(16) < "30200000"
+        csr.version = vers # 2 == v3
+      end
       csr.public_key = key.public_key
       csr.sign key, OpenSSL::Digest::SHA256.new
       csr
