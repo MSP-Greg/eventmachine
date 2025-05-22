@@ -620,8 +620,8 @@ module EventMachine
       @running = false
       @stop_scheduled = false
       @selectables ||= {}; @selectables.clear
-      @timers = SortedSet.new
-      @timers_to_add = SortedSet.new
+      @timers = ::SortedSet.new
+      @timers_to_add = ::SortedSet.new
       @timers_iterating = false # only set while iterating @timers
       set_timer_quantum(0.1)
       @current_loop_time = Time.now
