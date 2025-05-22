@@ -12,9 +12,7 @@ class TestSSLProtocols < Test::Unit::TestCase
   require_relative 'em_ssl_handlers'
   include EMSSLHandlers
 
-  # We're checking for whether Context min_version= & max_version= are defined, but
-  # JRuby has a bug where they're defined, but the private method they call isn't
-  RUBY_SSL_GE_2_1 = OpenSSL::SSL::SSLContext.private_instance_methods(false).include?(:set_minmax_proto_version)
+  HAS_SSL_MIN_VERSION = OpenSSL::SSL::SSLContext.instance_methods(false).include?(:min_version=)
 
   def test_invalid_ssl_version
     assert_raises(RuntimeError, "Unrecognized SSL/TLS Version: badinput") do
@@ -120,7 +118,7 @@ class TestSSLProtocols < Test::Unit::TestCase
       EM.defer do
         sock = TCPSocket.new IP, PORT
         ctx = OpenSSL::SSL::SSLContext.new
-        if RUBY_SSL_GE_2_1
+        if HAS_SSL_MIN_VERSION
           ctx.min_version = ext_min if ext_min
           ctx.max_version = ext_max if ext_max
         else
@@ -173,7 +171,7 @@ class TestSSLProtocols < Test::Unit::TestCase
       EM.defer do
         sock = TCPSocket.new IP, PORT
         ctx = OpenSSL::SSL::SSLContext.new
-        if RUBY_SSL_GE_2_1
+        if HAS_SSL_MIN_VERSION
           ctx.max_version = :TLS1_1
         else
           ctx.ssl_version = :TLSv1_client
