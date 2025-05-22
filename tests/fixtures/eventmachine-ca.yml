@@ -10,7 +10,7 @@ subject:
   OU: Development
   CN: EventMachine Testing CA
   emailAddress: eventmachine@example.com
-version: 3
+version: 2
 
 ttl_hours: 24
 
