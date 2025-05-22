@@ -28,6 +28,10 @@
 #  degrade automatically on versions of Ruby prior to June 2006.
 #
 
+if RUBY_VERSION >= '3.5'
+  Gem.install 'set'
+end
+
 require 'singleton'
 require 'forwardable'
 require 'socket'
