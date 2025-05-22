@@ -13,6 +13,11 @@ if RUBY_VERSION >= '3.0'
   gem 'sorted_set'
 end
 
+# ostruct is a bundled gem with Ruby 3.5 and later
+if RUBY_VERSION >= '3.5'
+  gem 'ostruct'
+end
+
 group :documentation do
   gem 'yard', '>= 0.8.5.2'
   gem 'redcarpet' unless RUBY_PLATFORM =~ /java|mswin/
